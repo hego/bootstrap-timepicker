@@ -93,7 +93,7 @@
                 });
             } 
 
-            this.setDefaultTime(this.defaultTime);
+            this.updateFromElementVal();
         }
 
         , showWidget: function(e) {
@@ -359,8 +359,8 @@
                 }
             }
 
-            this.updateElement();
-            this.updateWidget();
+//            this.updateElement();
+//            this.updateWidget();
         }
 
         , setMeridian: function(meridian) {
@@ -374,7 +374,8 @@
 
             this.updateElement();
         }
-
+        
+        // unused
         , setDefaultTime: function(defaultTime){
             if (defaultTime) {
                 if (defaultTime === 'current') {
@@ -482,11 +483,10 @@
             }
         }
 
-        , updateFromElementVal: function (e) {
+        , updateFromElementVal: function () {
             var time = this.$element.val();
             if (time) {
                 this.setValues(time);
-                this.updateWidget();
             }
         }
 

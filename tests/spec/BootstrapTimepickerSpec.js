@@ -1,16 +1,23 @@
 describe("Timepicker", function() {
-    var inputElement;
+    var div, inputElement, timepicker;
 
     beforeEach(function() {
-        var div;
         div = $('<div class="input-append bootstrap-timepicker-component"><input type="text" class="timepicker-default input-small"><span class="add-on"><i class="icon-time"></i></span></div>');
         inputElement = div.find('input.timepicker-default');
-        inputElement.timepicker();
+        inputElement.val('08:00');
+        inputElement.timepicker({showMeridian: false});
+        timepicker = inputElement.data('timepicker');
     });
     
     it('should have a data attribute', function() {
-        expect(inputElement.data()).toBeTruthy();
+        expect(timepicker).toBeTruthy();
     });
+    
+    it('should set its internal values from the input value', function() {
+        expect(timepicker.getTime()).toEqual('08:00');
+    });
+    
+
 //
 //  it("should be able to play a Song", function() {
 //    player.play(song);
