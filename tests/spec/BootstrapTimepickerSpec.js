@@ -39,6 +39,21 @@ describe("Timepicker", function() {
             timepicker.setMinute(30);
             expect(timepicker.getTime()).toEqual('08:30');
         });
+        
+        it('setMinute(60) sets the time to 09:00', function() {
+            timepicker.setMinute(60);
+            expect(timepicker.getTime()).toEqual('09:00');
+        });
+        
+        it('setMinute(75) sets the time to 09:15', function() {
+            timepicker.setMinute(75);
+            expect(timepicker.getTime()).toEqual('09:15');
+        });
+        
+        it('setMinute(150) sets the time to 10:30', function() {
+            timepicker.setMinute(150);
+            expect(timepicker.getTime()).toEqual('10:30');
+        });
     });
     
     describe('event', function() {

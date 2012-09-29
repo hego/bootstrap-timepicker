@@ -676,7 +676,13 @@
         }
         
         , setMinute: function(minute) {
-            var time = this.formatTime(this.hour, minute, this.second, this.meridian);
+            // Transform excess minutes to hours
+            var hour = this.hour;
+            while(minute >= 60) {
+                hour++;
+                minute = minute -60;
+            }
+            var time = this.formatTime(hour, minute, this.second, this.meridian);
             this.setTime(time);
         }
 
