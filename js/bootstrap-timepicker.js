@@ -431,6 +431,10 @@
         , setTime: function(time) {
             this.setValues(time);
             this.update();
+            this.$element.trigger({
+                type: 'timeChange',
+                time: this.getTime()
+            });
         }
 
         , update: function() {
@@ -613,28 +617,37 @@
                 if (this.hour === 11) {
                     this.toggleMeridian();
                 } else if (this.hour === 12) {
-                    return this.hour = 1;
+                    this.setHour(1);
+                    return;
                 }
             }
             if (this.hour === 23) {
-                return this.hour = 0;
+                this.setHour(0);
+                return;
             }
-            this.hour = this.hour + 1;
+            this.setHour(this.hour + 1);
         }
-
+        
         , decrementHour: function() {
             if (this.showMeridian) {
                 if (this.hour === 1) {
-                    return this.hour = 12;
+                    this.setHour(12);
+                    return;
                 } 
                 else if (this.hour === 12) {
                     this.toggleMeridian();
                 }
             }
             if (this.hour === 0) {
-                return this.hour = 23;
+                this.setHour(23);
+                return;
             }
-            this.hour = this.hour - 1;
+            this.setHour(this.hour - 1);
+        }
+        
+        , setHour: function(hour) {
+            var time = this.formatTime(hour, this.minute, this.second, this.meridian);
+            this.setTime(time);
         }
 
         , incrementMinute: function() {
@@ -643,7 +656,7 @@
                 this.incrementHour();
                 this.minute = newVal - 60;
             } else {
-                this.minute = newVal;
+                this.setMinute(newVal);
             }
         }
 
@@ -653,8 +666,13 @@
                 this.decrementHour();
                 this.minute = newVal + 60;
             } else {
-                this.minute = newVal;
+                this.setMinute(newVal);
             }
+        }
+        
+        , setMinute: function(minute) {
+            var time = this.formatTime(this.hour, minute, this.second, this.meridian);
+            this.setTime(time);
         }
 
         , incrementSecond: function() {

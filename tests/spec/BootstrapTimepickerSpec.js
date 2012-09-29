@@ -17,6 +17,53 @@ describe("Timepicker", function() {
         expect(timepicker.getTime()).toEqual('08:00');
     });
     
+    describe('calling method', function() {
+        it('setHour(10) sets the time to 10:00', function() {
+            timepicker.setHour(10);
+            expect(timepicker.getTime()).toEqual('10:00');
+        });
+        
+        it('setMinute(30) sets the time to 08:30', function() {
+            timepicker.setMinute(30);
+            expect(timepicker.getTime()).toEqual('08:30');
+        });
+    });
+    
+    describe('event', function() {
+        var triggerCount;
+        
+        describe('timeChange triggered once by calling', function() {
+            beforeEach(function() {
+                triggerCount = 0;
+
+                inputElement.on('timeChange', function() {
+                    triggerCount++;
+                })
+            });
+
+            afterEach(function() {
+                expect(triggerCount).toBe(1);
+                inputElement.off('timeChange');
+            });
+
+            it('incrementHour()', function() {
+                timepicker.incrementHour();
+            });
+
+            it('decrementHour()', function() {
+                timepicker.decrementHour();
+            });
+            
+            it('incrementMinute()', function() {
+                timepicker.incrementMinute();
+            });
+            
+            it('decrementMinute()', function() {
+                timepicker.decrementMinute();
+            });
+        });
+
+    });
     
     describe('Widget', function() {
         var $widget;
