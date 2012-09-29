@@ -17,7 +17,20 @@ describe("Timepicker", function() {
         expect(timepicker.getTime()).toEqual('08:00');
     });
     
-
+    
+    describe('Widget', function() {
+        var $widget;
+        
+        beforeEach(function() {
+            $widget = timepicker.$widget;
+        });
+        
+        it('should not be visible when initialized', function() {
+            expect($widget.is(':visible')).not.toBe(true);
+        });
+        
+        
+    });
 //
 //  it("should be able to play a Song", function() {
 //    player.play(song);
