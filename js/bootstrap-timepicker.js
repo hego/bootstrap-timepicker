@@ -429,12 +429,17 @@
         }
 
         , setTime: function(time) {
-            this.setValues(time);
-            this.update();
-            this.$element.trigger({
-                type: 'timeChange',
-                time: this.getTime()
-            });
+            // Check if anything has changed
+            var oldTime = this.getTime();
+            if (oldTime != time) {
+                this.setValues(time);
+                this.update();
+                this.$element.trigger({
+                    type: 'timeChange',
+                    time: this.getTime()
+                });
+            }
+            
         }
 
         , update: function() {
