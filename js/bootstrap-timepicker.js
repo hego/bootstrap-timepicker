@@ -97,8 +97,11 @@
         }
 
         , showWidget: function(e) {
-            e.stopPropagation();
-            e.preventDefault();
+            // So this can be called programatically
+            if (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
 
             if (this.open) {
                 return;

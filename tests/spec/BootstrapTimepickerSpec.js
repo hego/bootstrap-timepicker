@@ -29,6 +29,17 @@ describe("Timepicker", function() {
             expect($widget.is(':visible')).not.toBe(true);
         });
         
+        it('showWidget() should make widget visible', function() {
+            timepicker.showWidget();
+            expect($widget.is(':visible')).toBe(true);
+        });
+        
+        it('hideWidget() should hide widget', function() {
+            timepicker.showWidget();
+            timepicker.hideWidget();
+            expect($widget.is(':visible')).not.toBe(true);
+        });
+        
         
     });
 //
