@@ -17,10 +17,20 @@ describe("Timepicker", function() {
         expect(timepicker.getTime()).toEqual('08:00');
     });
     
+    
+    
     describe('calling method', function() {
-        it('setHour(10) sets the time to 10:00', function() {
-            timepicker.setHour(10);
-            expect(timepicker.getTime()).toEqual('10:00');
+        describe('setHour(10)', function() {
+            beforeEach(function() {
+                timepicker.setHour(10);
+            });
+            it('sets the time to 10:00', function() {
+                expect(timepicker.getTime()).toEqual('10:00');
+            });
+            
+            it('sets the input element\'s value to 10:00', function() {
+                expect(inputElement.val()).toEqual('10:00');
+            });
         });
         
         it('setMinute(30) sets the time to 08:30', function() {
